@@ -1,0 +1,31 @@
+﻿@page "/"
+@using IDHLDeveloperTest.Components;
+
+<PageTitle>Index</PageTitle>
+
+<div class="contentContainer">
+    <CharactersTable Page=@pageNumber></CharactersTable>
+    <div class="pagination-container">
+        <button @onclick="DecrementPage"> back </button>
+        <button @onclick="IncrementPage"> forward </button>
+    </div>
+</div>
+
+@code {
+
+    private int pageNumber = 1;
+
+    private void IncrementPage()
+    {
+        pageNumber++;
+    }
+
+    private void DecrementPage()
+    {
+        if (pageNumber == 1)
+        {
+            return;
+        }
+        pageNumber--;
+    }
+}

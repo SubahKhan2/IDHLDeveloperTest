@@ -1,0 +1,17 @@
+﻿@page "/Character/{Id}"
+@using IDHLDeveloperTest.Components;
+
+<PageTitle>Character Details</PageTitle>
+
+<h1>Character Details</h1>
+
+<div class="contentContainer">
+    <CharacterDetails Id=@Id></CharacterDetails>
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+}
+
+

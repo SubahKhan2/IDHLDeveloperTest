@@ -1,0 +1,58 @@
+﻿@inherits OwningComponentBase
+@using IDHLDeveloperTest.Models;
+@using IDHLDeveloperTest.Services;
+
+@if (character.name != null)
+{
+    <h2>@character.name</h2>
+}
+
+
+<div style="padding: 10px;">
+    <h3> Films </h3>
+    <div>
+        @if (character.films != null)
+        {
+            @foreach (var film in character.films)
+            {
+                <li>@film</li>
+            }
+        }
+    </div>
+    <h3> TV Shows </h3>
+    <div>
+        @if (character.tvShows != null)
+        {
+            @foreach (var tvShows in character.tvShows)
+            {
+                <li>@tvShows</li>
+            }
+        }
+    </div>
+    <h3> Video Games </h3>
+    <div>
+        @if (character.videoGames != null)
+        {
+            @foreach (var videoGames in character.videoGames)
+            {
+                <li>@videoGames</li>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    protected IClientService clientService;
+    private Character character = new Character();
+
+    protected override async Task OnInitializedAsync()
+    {
+        clientService = (IClientService)ScopedServices.GetService(typeof(IClientService));
+        character = await clientService.GetCharacter(Int32.Parse(Id));
+    }
+
+
+}
